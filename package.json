@@ -1,0 +1,26 @@
+{
+  "name": "shafferemployeetracker",
+  "version": "1.0.0",
+  "description": "A content management system written in JavaScript, utilizing Node.js, Inquirer and MySQL, to manage a company's employee database",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lapshaffer/ShafferEmployeeTracker.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lapshaffer/ShafferEmployeeTracker/issues"
+  },
+  "homepage": "https://github.com/lapshaffer/ShafferEmployeeTracker#readme",
+  "dependencies": {
+    "console.table": "^0.10.0",
+    "express": "^4.17.1",
+    "inquirer": "^8.1.2",
+    "mysql2": "^2.3.0"
+  }
+}
