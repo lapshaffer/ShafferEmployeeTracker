@@ -1,6 +1,6 @@
 // TODO:
-// Run index.js from server.js file, or vice versa
-// Write prepared statements to show certain combinations of data, or to update certain databases or entries, upon user selection
+    // Run index.js from server.js file, or vice versa
+    // Write prepared statements to show certain combinations of data, or to update certain databases or entries, upon user selection
 const express = require('express');
 const mysql = require('mysql2');
 

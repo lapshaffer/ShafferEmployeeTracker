@@ -7,5 +7,13 @@
             // when the employee is a manager, the manager field should be null
         // when the user wants to add a department, they are prompted to enter the name of the department and that department is created and added to the database
         // when the user wants to add a role, they are prompted to enter the name, salary and department of the role and that role is added to the database
+            // to display names, I'll need to query the department table to show the department names instead of their ids
         // when the user wants to add an employee, they are prompted to enter the first name, last name, role, and manager of the employee and that employee is added to the database
+            // manager options filtered only down to applicable department
         // when the user wants to update an employee's role, they are prompted to select an employee to update their role and that new role is updated in the database
+    
+const inquirer = require('inquirer');
+
+
+
+module.exports = inquiry
