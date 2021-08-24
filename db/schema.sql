@@ -1,5 +1,3 @@
--- TODO: --
--- Figure out how to make employee primary key dependent on role being set to manager --
 DROP DATABASE IF EXISTS employees_db;
 CREATE DATABASE employees_db;
 

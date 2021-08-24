@@ -1,6 +1,3 @@
--- TODO: --
--- Figure out how to insert foreign keys into seeds --
--- Figure out how to best set managers and their subordinates --
 INSERT INTO department (name)
 VALUES ("Sales"),
 ("Engineering"),
