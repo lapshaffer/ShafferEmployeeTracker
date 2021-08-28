@@ -2,6 +2,8 @@
 // User is prompted to enter the name of a department, and that department is added to the database
 
 const inquirer = require('inquirer');
+const consoleTable = require('console.table');
+const startMenu = require('./index');
 const db = require('../config/connection');
 
 const newDepartment = [
@@ -15,7 +17,18 @@ const newDepartment = [
 const addDepartment = () => {
     inquirer
     .prompt(newDepartment)
-    // .then to add new department
-}
+    .then(function (res) {
+        db.query('INSERT INTO department SET ?',
+            {
+                name: res.name
+            },
+            function (err, res) {
+                if (err) throw err
+                console.table(res);
+                startMenu();
+            }
+        )
+    })
+};
 
 module.exports = addDepartment

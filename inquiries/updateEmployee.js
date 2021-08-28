@@ -4,26 +4,51 @@
 
  const inquirer = require('inquirer');
  const db = require('../config/connection');
+ const startMenu = require('./index')
+ const selectRole = require('./arrays');
 
  const update = [
      {
          type: 'list',
          message: 'Which employee would you like to update?',
-         choices: [], // query employee table to display all employee's first and last names
+         choices: function () {
+            let lastName = [];
+            for (let i = 0; i < res.length; i++) {
+                lastName.push(res[i].last_name);
+            }
+            return lastName;
+        },
          name: 'updatedEmployee'
      },
      {
          type: 'list',
          message: 'Which role would you like to assign to this employee?',
-         choices: [], // query role table to display all role names
+         choices: selectRole(),
          name: 'updatedRole'
      }
  ];
 
  const updateEmployee = () => {
+    db.query("SELECT employee.last_name, role.title FROM employee JOIN role ON employee.role_id = role.id;", (err, res) => {
+        if (err) throw err
+        console.table(res)
      inquirer
      .prompt(update)
-     // .then to update employee role in employee table based on inputs
- }
+     .then(function (res) {
+        let roleId = selectRole().indexOf(res.role) + 1
+        db.query('UPDATE employee SET ? WHERE ?',
+            [{
+                role_id: roleId,
+            },
+            {
+                last_name: val.last_name,
+            }],
+            function (err) {
+                if (err) throw err
+                console.table(res)
+                startMenu()
+            })
+    });
+})};
 
  module.exports = updateEmployee

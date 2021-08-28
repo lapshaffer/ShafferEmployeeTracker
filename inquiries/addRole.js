@@ -3,7 +3,10 @@
 // Will need to query the department table to display department names rather than ids
 
 const inquirer = require('inquirer');
+const consoleTable = require('console.table');
+const startMenu = require('./index');
 const db = require('../config/connection');
+const selectDepartment = require('./arrays')
 
 const rolePrompt = [
         {
@@ -14,7 +17,7 @@ const rolePrompt = [
         {
             type: 'list',
             message: 'To which department does this role belong?',
-            choices: departmentChoices,
+            choices: selectDepartment(),
             name: 'roleDepartment'
         },
         {
@@ -27,8 +30,27 @@ const rolePrompt = [
 const addRole = () => {
     inquirer
     .prompt(rolePrompt)
-    // .then to add a new role
-}
+    .then(function (res) {
+        let departmentId;
+        for (let i = 0; i < departmentsArray.length; i++) {
+            if (res.roleDepartment == departmentsArray[i].name) {
+                departmentId = departmentsArray[i].id;
+            }
+        }
+        db.query('INSERT INTO role SET ?',
+            {
+                title: res.newRole,
+                department_id: departmentId,
+                salary: res.roleSalary,
+            },
+            function (err, res) {
+                if (err) throw err
+                console.table(res);
+                startMenu();
+            }
+        )
+    });
+};
 
 
 module.exports = addRole

@@ -4,7 +4,11 @@
     // Will need to query department table to display department names and role table to display role names
 
 const inquirer = require('inquirer');
+const consoleTable = require('console.table');
+const startMenu = require('./index');
 const db = require('../config/connection');
+const selectRole = require('./arrays');
+const selectManager = require('./arrays');
 
 const employeePrompt = [
     {
@@ -20,12 +24,13 @@ const employeePrompt = [
     {
         type: 'list',
         message: 'What role will this employee be performing?',
-        choices: roleArray,
+        choices: selectRole(),
         name: 'role'
     },
     {
-        type: 'input',
+        type: 'list',
         message: 'Who is the manager of this employee?',
+        choices: selectManager(),
         name: 'manager'
     }
 ];
@@ -33,8 +38,20 @@ const employeePrompt = [
 const addEmployee = () => {
     inquirer
     .prompt(employeePrompt)
-    // .then to add new employee
-}
-
+    .then(function (res) {
+        let roleId = selectRole().indexOf(res.role) + 1
+        let managerId = selectManager().indexOf(res.manager) + 1
+        db.query('INSERT INTO employee SET ?', {
+            first_name: res.first_name,
+            last_name: res.last_name,
+            manager_id: managerId,
+            role_id: roleId
+        }, function (err) {
+            if (err) throw err
+            console.table(res)
+            startMenu()
+        })
+    })
+};
 
 module.exports = addEmployee
