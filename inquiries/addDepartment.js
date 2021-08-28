@@ -1,6 +1,3 @@
-// TODO:
-// User is prompted to enter the name of a department, and that department is added to the database
-
 const inquirer = require('inquirer');
 const consoleTable = require('console.table');
 const startMenu = require('./index');
@@ -14,6 +11,7 @@ const newDepartment = [
     }
 ];
 
+// User is prompted to enter the name of a department, and that department is added to the database
 const addDepartment = () => {
     inquirer
     .prompt(newDepartment)
