@@ -6,7 +6,7 @@
 const inquirer = require('inquirer');
 const db = require('../config/connection');
 
-const newEmployee = [
+const employeePrompt = [
     {
         type: 'input',
         message: 'What is the first name of the new employee?',
@@ -20,21 +20,21 @@ const newEmployee = [
     {
         type: 'list',
         message: 'What role will this employee be performing?',
-        choices: [], // query role table to pull names via their ids to display here
+        choices: roleArray,
         name: 'role'
     },
     {
-        type: 'list',
+        type: 'input',
         message: 'Who is the manager of this employee?',
-        choices: [], // query employee table to display all employees in this employee's department as potential managers
         name: 'manager'
     }
 ];
 
 const addEmployee = () => {
     inquirer
-    .prompt(newEmployee)
-    // .then to push new employee into employee table
+    .prompt(employeePrompt)
+    // .then to add new employee
 }
+
 
 module.exports = addEmployee

@@ -15,7 +15,7 @@ const newDepartment = [
 const addDepartment = () => {
     inquirer
     .prompt(newDepartment)
-    // .then to push new department into department table
+    // .then to add new department
 }
 
 module.exports = addDepartment
