@@ -1,12 +1,10 @@
-// TODO:
-// Show table of all employee ids, first names, last names, role titles, departments, salaries and managers (if applicable)
-    // This will need to be a double join on the department, role, and employee tables
 const startMenu = require('./index');
 const db = require('../config/connection');
 const consoleTable = require('console.table');
 
+// This function returns a list of all employees, theit ids, their roles, their departments, their salaries, and their managers (if applicable)
 const viewEmployees = () => {
-    db.query("SELECT employee.first_name, employee.last_name, role.title, role.salary, department.name, CONCAT(e.first_name, ' ' ,e.last_name) AS Manager FROM employee INNER JOIN role on role.id = employee.role_id INNER JOIN department on department.id = role.department_id left join employee e on employee.manager_id = e.id;",
+    db.query(`SELECT employee.id AS Id, employee.first_name AS First, employee.last_name AS Last, role.title AS Role, department.name AS Department, role.salary AS Salary, CONCAT(MyManager.first_name, ' ', MyManager.last_name) AS Manager FROM employee JOIN role ON employee.role_id = role.id JOIN department ON role.department_id = department.id LEFT JOIN employee MyManager on MyManager.id = employee.manager_id`,
         function (err, res) {
             if (err) throw err
             console.table(res)
