@@ -6,6 +6,24 @@ const addDepartment = require('./addDepartment');
 const addRole = require('./addRole');
 const addEmployee = require('./addEmployee');
 const updateEmployee = require("./updateEmployee");
+const mysql = require('mysql2');
+
+const db = mysql.createConnection({
+    host: 'localhost',
+    port: 3306,
+    user: 'root',
+    password: 'rootR00t!',
+    database: 'employees_db'
+});
+
+db.connect((err) => {
+    if (err) {
+        console.log(err);
+        throw err;
+    }
+    console.log(`Connected to employee_db`)
+    startMenu();
+});
 
 const startList = [
     {
