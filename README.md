@@ -31,10 +31,21 @@ WHEN I choose to update an employee role
 THEN I am prompted to select an employee to update and their new role and this information is updated in the database 
 ```
 
-## Review
+## Developer Notes
 
-You are required to submit BOTH of the following for review:
+```
+Hello! My name is Lisa Shaffer, and boy howdy did I have some troubles in development!
+Unfortunately, I was unable to run the inquirer prompts on my machine to test this application, or to film a video of the app in use
+I was very kindly assisted by Dan Gross with debugging, as he was able to open the application on his machine and run it, even though I was not. I've done my best to implement the fixes he suggested, but as I was unable to test them in the command line, I'm not 100% sure
+Near the end of our meeting, despite not touching the .env or connection files, I was unable to connect to my database without hard-coding the credentials into the inquiries/index.js file, the file this application is run from. Upon hard-coding these credentials into the file, I was back to getting my static, non-selectable prompts from inquirer. Tiny victories
 
-* A walkthrough video demonstrating the functionality of the application.
+I would very much like to continue development on this application in the future, if I'm able to get the inquirer prompts to function on my machine, or get access to a different one. I'd love to see it working someday!
+Thank you for your time in reading these notes, your patience is much appreciated
+```
 
-* The URL of the GitHub repository, with a unique name and a README describing the project.
+## Resources and Questions
+
+```
+Please reach out to me with any questions about this application at lapshaffer@gmail.com
+GitHub: https://github.com/lapshaffer
+```
