@@ -1,15 +1,12 @@
-const startMenu = require('./index');
-const db = require('../config/connection');
-const consoleTable = require('console.table');
+const db = require("../config/connection");
 
-// This table shows all departments 
+// This table shows all departments
 const viewDepartments = () => {
-    db.query(`SELECT department.id AS Id, department.name AS DepartmentFROM department`,
-        function (err, res) {
-            if (err) throw err
-            console.table(res)
-            startMenu()
-        })
+  return db
+    .promise()
+    .query(
+      `SELECT department.id AS Id, department.name AS Department FROM department`
+    );
 };
 
-module.exports = viewDepartments
+module.exports = viewDepartments;

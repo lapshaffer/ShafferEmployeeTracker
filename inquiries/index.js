@@ -17,26 +17,52 @@ const startList = [
 ];
 
 const startMenu = () => {
-    inquirer
-        .prompt(startList)
-        .then(response => {
-            console.log(response);
-            if (response.startList === 'View all departments') {
-                viewDepartments();
-            } else if (response.startList === "View all roles") {
-                viewRoles();
-            } else if (response.startList === "View all employees") {
-                viewEmployees();
-            } else if (response.startList === 'Add a department') {
-                addDepartment();
-            } else if (response.startList === 'Add a role') {
-                addRole();
-            } else if (response.startList === 'Add an employee') {
-                addEmployee();
-            } else if (response.startList === "Update an employee role") {
-                updateEmployee();
-            }
-        })
-};
+    inquirer.prompt(startList).then((response) => {
+        console.log(response);
+
+    switch (response.startList) {
+        case "View all departments":
+            handleViewDepartments();
+            break;
+
+        case "View all roles":
+            viewRoles();
+            break;
+        
+        case "View all employees":
+            viewEmployees();
+            break;
+
+        case "Add a department":
+            addDepartment();
+            break;
+
+        case "Add a role":
+            addRole();
+            break;
+
+        case "Add an employee":
+            addEmployee();
+            break;
+
+        case "Update an employee role":
+            updateEmployee();
+            break;
+        
+        default:
+            break;
+    }
+});
+
+const handleViewDepartments = () => {
+    viewDepartments()
+      .then((departmentData) => {
+        console.table(departmentData[0]);
+        startMenu();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }};
 
 module.exports = startMenu

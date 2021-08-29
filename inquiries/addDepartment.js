@@ -16,7 +16,7 @@ const addDepartment = () => {
     inquirer
     .prompt(newDepartment)
     .then(function (res) {
-        db.query('INSERT INTO department SET ?',
+        return db.promise().query('INSERT INTO department SET ?',
             {
                 name: res.name
             },

@@ -37,7 +37,7 @@ const addEmployee = () => {
     .then(function (res) {
         let roleId = selectRole().indexOf(res.role) + 1
         let managerId = selectManager().indexOf(res.manager) + 1
-        db.query('INSERT INTO employee SET ?', {
+        db.promise().query('INSERT INTO employee SET ?', {
             first_name: res.first_name,
             last_name: res.last_name,
             manager_id: managerId,

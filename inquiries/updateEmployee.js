@@ -29,14 +29,14 @@
  ];
 
  const updateEmployee = () => {
-    db.query("SELECT employee.last_name, role.title FROM employee JOIN role ON employee.role_id = role.id;", (err, res) => {
+    return db.promise().query("SELECT employee.last_name, role.title FROM employee JOIN role ON employee.role_id = role.id;", (err, res) => {
         if (err) throw err
         console.table(res)
      inquirer
      .prompt(update)
      .then(function (res) {
         let roleId = selectRole().indexOf(res.role) + 1
-        db.query('UPDATE employee SET ? WHERE ?',
+        return db.promise().query('UPDATE employee SET ? WHERE ?',
             [{
                 role_id: roleId,
             },

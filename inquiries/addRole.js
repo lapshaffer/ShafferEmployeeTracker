@@ -34,7 +34,7 @@ const addRole = () => {
                 departmentId = departmentsArray[i].id;
             }
         }
-        db.query('INSERT INTO role SET ?',
+        return db.promise().query('INSERT INTO role SET ?',
             {
                 title: res.newRole,
                 department_id: departmentId,
